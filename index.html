@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="holder" style="display:flex;flex-direction: row;flex-wrap: wrap;"></div>
+  
+    <script>
+        async function fetchData(){
+         try{
+var country=await fetch("https://restcountries.com/v3.1/all")
+var countries=await country.json()
+countries.forEach(element => {
+    var card=document.createElement("div");
+    // card.style.width="3%"
+    var flag=document.createElement("img")
+    flag.setAttribute("src",element.flags.png)
+    flag.setAttribute("width",200)
+    card.innerText=element.name.common;
+    card.appendChild(flag)
+    document.body.appendChild(card)
+   var button=document.createElement("btn");
+   button.style.backgroundColor="white";
+   button.innerText="getweather"
+   card.appendChild(button);
+    
+});
+console.log(countries)
+         }catch(error){
+             console.log(error)
+         }
+        }
+        fetchData()
+    </script>
+</body>
+</html>
